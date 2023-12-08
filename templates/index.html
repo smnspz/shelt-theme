@@ -1,0 +1,72 @@
+{% include 'hero.html' %}
+<div class="index-container clearfix">
+  <div class="newsletter-col col col-6">
+    Subscribe
+    <form class="newsletter-subscribe-form" action="//newsletters.limitedrun.com/subscribe?store=shelt" method="post" target="_blank">
+      
+    
+      <div class="control-group">
+        <label class="control-label" for="email">Email Address:</label>
+        <div class="controls">
+          <input type="email" name="email" value="" required/>
+        </div>
+      </div>
+    
+      <div class="control-group">
+        <label class="control-label" for="name">First & Last Name:</label>
+        <div class="controls">
+          <input type="text" name="name" value=""/>
+        </div>
+      </div>
+    
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+  <div class="products-col col col-6">
+    <div class="product-grid__title">PRODUCTS</div>
+    <br/>
+    <div id="product-grid">
+      {% paginate store.products by 30 %}
+        {% for product in store.products %}
+          <div class="product flex flex-column">
+            <a class="product__image-link" href="{{ product.url }}">
+              <img class="product__image" src="{{ product.images.first.url }}"/>
+            </a>
+            </a>
+            <a class="link mb1" href="{{ product.url }}">{{ product.name }}</a>
+              {% assign out_of_stock = true %}
+    
+              {% if product.available? %}
+                {% for variation in product.variations %}
+                  {% if variation.available? %}
+                    {% assign out_of_stock = false %}
+                  {% endif %}
+                {% endfor %}
+    
+                {% if out_of_stock %}
+                  Out of Stock
+                {% else %}
+                  {{ product.price_range | money | join ' - '}}
+                {% endif %}
+    
+              {% elsif product.announced? %}
+                Coming Soon
+              {% elsif product.unavailable? %}
+                Unavailable
+              {% endif %}
+            
+          </div>
+        {% endfor %}
+    
+        {{ store.products_pagination }}
+      {% endpaginate %}
+    </div>  
+  </div>
+</div>

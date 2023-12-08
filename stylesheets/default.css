@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'times new roman';
+  src: url('https://f9.limitedrun.com/fonts/1555/times_new_roman.ttf')
+}
+
+body {
+  font-family: 'times new roman', times;
+  font-size: 1.3125em;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 0;
+}
+
+header {
+  margin-bottom: 0.5em;
+}
+
+.header__link:hover {
+  color: grey;
+  transition: color 0.2s ease-in;
+}
+
+.photos-container {
+  display: flex;
+  justify-content: center;
+}
+
+/*#product-grid {*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  gap: 1em;*/
+/*}*/
+
+/*.product {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*}*/
+
+.link {
+  color: #000;
+  font-style: italic;
+}
+
+hr {
+  color: #000;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 1.3125em;
+  }
+  
+  .product__image {
+    height: auto;
+    max-width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+  .product__image {
+    max-width: 300px;
+    object-fit: cover;
+  }
+  
+  .product-grid__title {
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+  
+  #product-grid {
+    max-width: 80vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+  
